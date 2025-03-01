@@ -1,18 +1,370 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dubizzle-clone-wizard</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-    <meta property="og:image" content="/og-image.png" />
+    <title>Dubizzle Clone</title>
+    <meta name="description" content="Buy and sell items locally in Egypt" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Feather Icons (alternative to Lucide React) -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
   </head>
 
   <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-container">
+          <!-- Top header with logo and search -->
+          <div class="header-top">
+            <!-- Logo and mobile menu button -->
+            <div class="header-logo-section">
+              <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <i data-feather="menu"></i>
+              </button>
+              <a href="/" class="logo">
+                <span class="logo-text">dubizzle</span>
+              </a>
+            </div>
+
+            <!-- Location selector -->
+            <div class="location-selector">
+              <button class="location-button" id="locationButton">
+                <i data-feather="map-pin"></i>
+                <span id="selectedLocation">Egypt</span>
+                <i data-feather="chevron-down"></i>
+              </button>
+              <div class="location-dropdown" id="locationDropdown">
+                <a href="#" class="dropdown-item" data-location="Egypt">Egypt</a>
+                <a href="#" class="dropdown-item" data-location="Cairo">Cairo</a>
+                <a href="#" class="dropdown-item" data-location="Alexandria">Alexandria</a>
+                <a href="#" class="dropdown-item" data-location="Giza">Giza</a>
+              </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-container">
+              <div class="search-input-wrapper">
+                <i data-feather="search"></i>
+                <input
+                  type="search"
+                  placeholder="What are you looking for?"
+                  class="search-input"
+                />
+              </div>
+            </div>
+
+            <!-- User actions -->
+            <div class="user-actions">
+              <button class="icon-button">
+                <i data-feather="bell"></i>
+              </button>
+              <button class="icon-button">
+                <i data-feather="message-square"></i>
+              </button>
+              <button class="icon-button">
+                <i data-feather="user"></i>
+              </button>
+              <button class="sell-button">
+                + Sell
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile search - only visible on mobile -->
+          <div class="mobile-search">
+            <div class="search-input-wrapper">
+              <i data-feather="search"></i>
+              <input
+                type="search"
+                placeholder="What are you looking for?"
+                class="search-input"
+              />
+            </div>
+          </div>
+
+          <!-- Mobile menu -->
+          <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-items">
+              <button class="mobile-menu-item">
+                <i data-feather="map-pin"></i>
+                <span id="mobileSelectedLocation">Egypt</span>
+              </button>
+              <a href="/notifications" class="mobile-menu-item">
+                <i data-feather="bell"></i>
+                Notifications
+              </a>
+              <a href="/messages" class="mobile-menu-item">
+                <i data-feather="message-square"></i>
+                Messages
+              </a>
+              <a href="/account" class="mobile-menu-item">
+                <i data-feather="user"></i>
+                My Account
+              </a>
+            </div>
+          </div>
+
+          <!-- Categories navigation -->
+          <nav class="categories-nav">
+            <div class="categories-container">
+              <a href="/properties" class="category-link">Properties</a>
+              <a href="/vehicles" class="category-link">Vehicles</a>
+              <a href="/mobiles" class="category-link">Mobiles & Tablets</a>
+              <a href="/electronics" class="category-link">Electronics</a>
+              <a href="/furniture" class="category-link">Home & Furniture</a>
+              <a href="/fashion" class="category-link">Fashion & Beauty</a>
+              <a href="/pets" class="category-link">Pets</a>
+              <a href="/jobs" class="category-link">Jobs</a>
+              <a href="/services" class="category-link">Services</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <!-- Hero Banner -->
+        <section class="hero-banner">
+          <div class="hero-container">
+            <div class="hero-content">
+              <h1 class="hero-title">Find It, Buy It, Sell It</h1>
+              <p class="hero-subtitle">The #1 marketplace in Egypt</p>
+              <div class="hero-search">
+                <div class="hero-search-input">
+                  <i data-feather="search"></i>
+                  <input type="text" placeholder="What are you looking for?" />
+                </div>
+                <button class="hero-search-button">Search</button>
+              </div>
+              <div class="hero-popular">
+                <span>Popular:</span>
+                <a href="#">Apartments</a>
+                <a href="#">Cars</a>
+                <a href="#">iPhones</a>
+                <a href="#">Jobs</a>
+              </div>
+            </div>
+            <div class="hero-image">
+              <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="People using Dubizzle app" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="featured-categories">
+          <div class="section-container">
+            <h2 class="section-title">Featured Categories</h2>
+            <div class="categories-grid">
+              <a href="/properties" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="home"></i>
+                </div>
+                <span class="category-name">Properties</span>
+              </a>
+              <a href="/vehicles" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="truck"></i>
+                </div>
+                <span class="category-name">Vehicles</span>
+              </a>
+              <a href="/mobiles" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="smartphone"></i>
+                </div>
+                <span class="category-name">Mobiles</span>
+              </a>
+              <a href="/electronics" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="tv"></i>
+                </div>
+                <span class="category-name">Electronics</span>
+              </a>
+              <a href="/furniture" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="box"></i>
+                </div>
+                <span class="category-name">Furniture</span>
+              </a>
+              <a href="/fashion" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="shopping-bag"></i>
+                </div>
+                <span class="category-name">Fashion</span>
+              </a>
+              <a href="/jobs" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="briefcase"></i>
+                </div>
+                <span class="category-name">Jobs</span>
+              </a>
+              <a href="/services" class="category-card">
+                <div class="category-icon">
+                  <i data-feather="settings"></i>
+                </div>
+                <span class="category-name">Services</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Property Listings -->
+        <section class="property-listings">
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="section-title">Properties for Sale & Rent</h2>
+              <a href="/properties" class="view-all">View All <i data-feather="arrow-right"></i></a>
+            </div>
+            <div class="listings-grid" id="propertyListings">
+              <!-- Property listings will be populated by JavaScript -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Vehicle Listings -->
+        <section class="vehicle-listings">
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="section-title">Vehicles for Sale</h2>
+              <a href="/vehicles" class="view-all">View All <i data-feather="arrow-right"></i></a>
+            </div>
+            <div class="listings-grid" id="vehicleListings">
+              <!-- Vehicle listings will be populated by JavaScript -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Electronics Listings -->
+        <section class="electronics-listings">
+          <div class="section-container">
+            <div class="section-header">
+              <h2 class="section-title">Electronics & Appliances</h2>
+              <a href="/electronics" class="view-all">View All <i data-feather="arrow-right"></i></a>
+            </div>
+            <div class="listings-grid" id="electronicsListings">
+              <!-- Electronics listings will be populated by JavaScript -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Mobile App Promo -->
+        <section class="app-promo">
+          <div class="app-promo-container">
+            <div class="app-promo-content">
+              <h2 class="app-promo-title">Download the dubizzle App</h2>
+              <p class="app-promo-text">
+                Get the full experience on your phone. Buy, sell, and find just about anything using the app on your mobile.
+              </p>
+              <div class="app-download-buttons">
+                <a href="#" class="app-button">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" />
+                </a>
+                <a href="#" class="app-button">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+                </a>
+              </div>
+            </div>
+            <div class="app-promo-image">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dubizzle mobile app" />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-grid">
+            <!-- Column 1 - About -->
+            <div class="footer-column">
+              <h3 class="footer-heading">About dubizzle</h3>
+              <ul class="footer-links">
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/careers">Careers</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/terms">Terms of Use</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/sitemap">Sitemap</a></li>
+              </ul>
+            </div>
+
+            <!-- Column 2 - Categories -->
+            <div class="footer-column">
+              <h3 class="footer-heading">Categories</h3>
+              <ul class="footer-links">
+                <li><a href="/properties">Properties</a></li>
+                <li><a href="/vehicles">Vehicles</a></li>
+                <li><a href="/electronics">Electronics</a></li>
+                <li><a href="/furniture">Home & Furniture</a></li>
+                <li><a href="/jobs">Jobs</a></li>
+                <li><a href="/services">Services</a></li>
+              </ul>
+            </div>
+
+            <!-- Column 3 - Support -->
+            <div class="footer-column">
+              <h3 class="footer-heading">Support</h3>
+              <ul class="footer-links">
+                <li><a href="/help">Help Center</a></li>
+                <li><a href="/safety">Safety Tips</a></li>
+                <li><a href="/faq">FAQs</a></li>
+                <li><a href="/report">Report an Issue</a></li>
+                <li><a href="/feedback">Feedback</a></li>
+              </ul>
+            </div>
+
+            <!-- Column 4 - Connect -->
+            <div class="footer-column">
+              <h3 class="footer-heading">Connect with Us</h3>
+              <p class="footer-text">
+                Follow us on social media for the latest updates and offers
+              </p>
+              <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                  <i data-feather="facebook"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                  <i data-feather="twitter"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <i data-feather="instagram"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <i data-feather="linkedin"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                  <i data-feather="youtube"></i>
+                </a>
+              </div>
+              <div class="app-downloads">
+                <h4 class="downloads-title">Download Our App</h4>
+                <div class="download-buttons">
+                  <a href="#" class="download-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on App Store" />
+                  </a>
+                  <a href="#" class="download-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-bottom-container">
+              <div class="footer-logo">
+                <span class="logo-text">dubizzle</span>
+                <span class="logo-location">Egypt</span>
+              </div>
+              <div class="copyright">
+                © <span id="currentYear"></span> dubizzle Egypt. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
